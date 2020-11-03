@@ -7,6 +7,6 @@
 * @param v The input array
 * @param sum The array with the partial sums values (Sums of each block).
 */
-__global__ void nvixnu__sum_by_block(float *v, float *sum);
+__global__ void nvixnu__sum_by_block(double *v, double *sum);
 
 #endif /* NVIXNU__REDUCTION_H_ */
