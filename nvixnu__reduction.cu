@@ -1,19 +1,22 @@
 #include "nvixnu__reduction.h"
 
 __global__
-void nvixnu__sum_by_block(double *v, double *sum){
+void nvixnu__sum_by_block(double *v, double *sum, const int length){
     extern __shared__ double partial_sum[];
     unsigned int tx = threadIdx.x;
-    // Copies the elements to be added to the shared memory
-    partial_sum[tx] = v[blockIdx.x * blockDim.x + tx];
+    int tid = blockIdx.x * blockDim.x + tx;
+    if(tid < length){
+        // Copies the elements to be added to the shared memory
+        partial_sum[tx] = v[tid];
 
-    // Halve the stride in each iteration, bringing the temporary sums into the first half
-    for(unsigned int stride = blockDim.x/2; stride >= 1; stride /= 2){
-        __syncthreads();
-        if(tx < stride){ // Check if thread is inthe first half
-            partial_sum[tx] += partial_sum[tx+stride];
+        // Halve the stride in each iteration, bringing the temporary sums into the first half
+        for(unsigned int stride = blockDim.x/2; stride >= 1; stride /= 2){
+            __syncthreads();
+            if(tx < stride){ // Check if thread is inthe first half
+                partial_sum[tx] += partial_sum[tx+stride];
+            }
         }
+        __syncthreads();
+        sum[blockIdx.x] = partial_sum[0];    
     }
-    __syncthreads();
-    sum[blockIdx.x] = partial_sum[0];
 }
