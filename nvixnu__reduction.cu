@@ -1,7 +1,7 @@
 #include "nvixnu__reduction.h"
 
 __global__
-void sum_by_block(double *v, double *sum, const int length){
+void nvixnu__sum_by_block(double *v, double *sum, const int length){
     extern __shared__ double partial_sum[];
     unsigned int tx = threadIdx.x;
     int tid = blockIdx.x * blockDim.x + tx;
