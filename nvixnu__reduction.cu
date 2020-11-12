@@ -39,3 +39,13 @@ void nvixnu__sum_by_block(double *v, double *sum, const int length){
     __syncthreads();
     sum[blockIdx.x] = partial_sum[0];    
 }
+
+
+double nvixnu__h_sum(double *v, const int length){
+  double temp = 0.0;
+  for(int i = 0; i < length; i++){
+      temp+= v[i];
+  }
+
+  return temp;
+}

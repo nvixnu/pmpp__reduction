@@ -18,4 +18,12 @@ __global__ void nvixnu__sum_by_block(double *v, double *sum, const int length);
 */
 __global__ void nvixnu__sum_by_block_interleaved(double *v, double *sum, const int length);
 
+
+/**
+* Host function that performs sum reduction
+* @param v The input array
+* @param length The input array length
+*/
+double nvixnu__h_sum(double *v, const int length)
+
 #endif /* NVIXNU__REDUCTION_H_ */
