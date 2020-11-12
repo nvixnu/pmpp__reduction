@@ -24,6 +24,6 @@ __global__ void nvixnu__sum_by_block_interleaved(double *v, double *sum, const i
 * @param v The input array
 * @param length The input array length
 */
-double nvixnu__h_sum(double *v, const int length)
+double nvixnu__h_sum(double *v, const int length);
 
 #endif /* NVIXNU__REDUCTION_H_ */
