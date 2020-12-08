@@ -8,7 +8,7 @@
 * @param sum The array with the partial sums values (Sums of each block).
 * @param length The input array length
 */
-__global__ void nvixnu__sum_by_block(double *v, double *sum, const int length);
+__global__ void nvixnu__sum_by_block_kernel(double *v, double *sum, const int length);
 
 /**
 * Kernel that sums elements of an array in a interleaved way (Didatic purpose once it has multiple divergences per warp)
@@ -16,7 +16,7 @@ __global__ void nvixnu__sum_by_block(double *v, double *sum, const int length);
 * @param sum The array with the partial sums values (Sums of each block).
 * @param length The input array length
 */
-__global__ void nvixnu__sum_by_block_interleaved(double *v, double *sum, const int length);
+__global__ void nvixnu__sum_by_block_interleaved_kernel(double *v, double *sum, const int length);
 
 
 /**
@@ -24,6 +24,6 @@ __global__ void nvixnu__sum_by_block_interleaved(double *v, double *sum, const i
 * @param v The input array
 * @param length The input array length
 */
-double nvixnu__h_sum(double *v, const int length);
+double nvixnu__sum_host(double *v, const int length);
 
 #endif /* NVIXNU__REDUCTION_H_ */
