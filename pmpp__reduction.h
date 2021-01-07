@@ -1,6 +1,6 @@
 
-#ifndef NVIXNU__REDUCTION_H_
-#define NVIXNU__REDUCTION_H_
+#ifndef PMPP__REDUCTION_H_
+#define PMPP__REDUCTION_H_
 
 /**
 * Kernel that sums elements of an array in a coalesced way (reduce the divergence in a warp)
@@ -8,7 +8,7 @@
 * @param sum The array with the partial sums values (Sums of each block).
 * @param length The input array length
 */
-__global__ void nvixnu__sum_by_block_kernel(double *v, double *sum, const int length);
+__global__ void pmpp__sum_by_block_kernel(double *v, double *sum, const int length);
 
 /**
 * Kernel that sums elements of an array in a interleaved way (Didatic purpose once it has multiple divergences per warp)
@@ -16,7 +16,7 @@ __global__ void nvixnu__sum_by_block_kernel(double *v, double *sum, const int le
 * @param sum The array with the partial sums values (Sums of each block).
 * @param length The input array length
 */
-__global__ void nvixnu__sum_by_block_interleaved_kernel(double *v, double *sum, const int length);
+__global__ void pmpp__sum_by_block_interleaved_kernel(double *v, double *sum, const int length);
 
 
 /**
@@ -24,6 +24,6 @@ __global__ void nvixnu__sum_by_block_interleaved_kernel(double *v, double *sum, 
 * @param v The input array
 * @param length The input array length
 */
-double nvixnu__sum_host(double *v, const int length);
+double pmpp__sum_host(double *v, const int length);
 
-#endif /* NVIXNU__REDUCTION_H_ */
+#endif /* PMPP__REDUCTION_H_ */

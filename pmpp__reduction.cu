@@ -1,7 +1,7 @@
-#include "nvixnu__reduction.h"
+#include "pmpp__reduction.h"
 
 __global__
-void nvixnu__sum_by_block_interleaved_kernel(double *v, double *sum, const int length){
+void pmpp__sum_by_block_interleaved_kernel(double *v, double *sum, const int length){
     extern __shared__ double partial_sum[];
     unsigned int tx = threadIdx.x;
     int tid = blockIdx.x * blockDim.x + tx;
@@ -21,7 +21,7 @@ void nvixnu__sum_by_block_interleaved_kernel(double *v, double *sum, const int l
 }
 
 __global__
-void nvixnu__sum_by_block_kernel(double *v, double *sum, const int length){
+void pmpp__sum_by_block_kernel(double *v, double *sum, const int length){
     extern __shared__ double partial_sum[];
     unsigned int tx = threadIdx.x;
     int tid = blockIdx.x * blockDim.x + tx;
@@ -41,7 +41,7 @@ void nvixnu__sum_by_block_kernel(double *v, double *sum, const int length){
 }
 
 
-double nvixnu__sum_host(double *v, const int length){
+double pmpp__sum_host(double *v, const int length){
   double temp = 0.0;
   for(int i = 0; i < length; i++){
       temp+= v[i];
